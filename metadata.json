@@ -1,5 +1,5 @@
 {
-  "name": "Vitality Longevity Engine v2.0",
+  "name": "NEO: The Sanctuary",
   "description": "A high-precision health architect and wellness companion focusing on metabolic health, longevity, and AI-powered wellness optimization for everyone.",
   "requestFramePermissions": ["camera", "microphone", "geolocation"]
 }
