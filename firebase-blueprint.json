@@ -1,0 +1,54 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "User Profile",
+      "description": "Stores user metabolic data and questionnaire answers",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "description": "Firebase Auth UID" },
+        "answers": { "type": "object", "description": "Questionnaire answers" },
+        "appState": { "type": "string", "description": "Current app state" },
+        "isStrictCoach": { "type": "boolean", "description": "Strict coach mode" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "answers", "appState"]
+    },
+    "HealthLog": {
+      "title": "Health Log",
+      "description": "Stores various health logs like hydration, workouts, etc.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "description": "Firebase Auth UID" },
+        "type": { "type": "string", "enum": ["hydration", "workout", "meal", "kick", "contraction", "glucose", "pressure", "weight", "mood", "symptom", "feeding", "nappy"] },
+        "data": { "type": "object", "description": "The log data" },
+        "timestamp": { "type": "number", "description": "Unix timestamp" }
+      },
+      "required": ["uid", "type", "data", "timestamp"]
+    },
+    "DietPlan": {
+      "title": "Diet Plan",
+      "description": "Stores the generated diet plan",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "description": "Firebase Auth UID" },
+        "plan": { "type": "object", "description": "The diet plan details" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "plan"]
+    }
+  },
+  "firestore": {
+    "/users/{uid}": {
+      "schema": "UserProfile",
+      "description": "Main user profile and state"
+    },
+    "/users/{uid}/logs/{logId}": {
+      "schema": "HealthLog",
+      "description": "User health logs"
+    },
+    "/users/{uid}/plans/{planId}": {
+      "schema": "DietPlan",
+      "description": "User diet plans"
+    }
+  }
+}
